@@ -1,0 +1,222 @@
+﻿@model IEnumerable<WebApplication1.Models.TestTable33>
+
+<div class="card card-body bg-light border-dark mb-1">
+	<div class="row">
+		<div class="col-md-4">
+			@if (User.Identity.Name == "管理ユーザー")
+			{
+				<a class="d-grid btn btn-primary bg-gradient mt-1" asp-action="Create">新規作成</a>
+			}
+			else
+			{
+				<a class="d-grid btn btn-primary bg-gradient mt-1 disabled" asp-action="Create">新規作成</a>
+			}
+		</div>
+		<div class="col-md-4 btn-group">
+			<a class="d-grid btn btn-primary bg-gradient mt-1" data-bs-toggle="collapse" data-bs-target="#searchMenu">検　索</a>
+			<a class="d-grid btn btn-primary bg-gradient mt-1" asp-action="Index">クリア</a>
+		</div>
+	</div>
+</div>
+
+<form asp-action="search">
+	<div class="row">
+		<div class="col-12 collapse" id="searchMenu">
+			<div class="card card-body bg-light border-dark mb-1">
+				<div class="row">
+					<div class="col-md-4">
+						<input type="text" name="Number" class="form-control mt-1" placeholder="管理番号" />
+					</div>
+					<div class="col-md-4">
+						<input type="text" name="Name" class="form-control mt-1" placeholder="一般名称" />
+					</div>
+					<div class="col-md-4">
+						<input type="text" name="Model" class="form-control mt-1" placeholder="モデル名" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<input type="text" name="Maker" class="form-control mt-1" placeholder="メーカー" />
+					</div>
+					<div class="col-md-4">
+						<input type="text" name="Location" class="form-control mt-1" placeholder="設置場所" />
+					</div>
+					<div class="col-md-4 text-end">
+						<input type="submit" value="実　行" class="btn btn-primary bg-gradient mt-1" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card card-body bg-light border-dark table-responsive">
+			<div class="row">
+				<table class="table bg-white table-bordered border-dark table-hover">
+					<thead>
+						<tr class="text-nowrap">
+							<th class="col-2">
+								@*　通常はこのように呼ぶ　@Html.DisplayNameFor(model => model.モデル名)*@
+								管理番号
+							</th>
+							<th class="col-2">
+								一般名称
+							</th>
+							<th class="col-2">
+								モデル名
+							</th>
+							<th class="col-2">
+								メーカー
+							</th>
+							<th class="col-2">
+								設置場所
+							</th>
+						</tr>
+
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr class="text-break">
+								<td>
+									@Html.DisplayFor(modelItem => item.管理番号)
+									<br>
+
+									<a class="btn btn-primary bg-gradient mt-1" asp-action="Details" asp-route-id="@item.Id">詳細</a>
+
+									@if (User.Identity.Name == "管理ユーザー")
+									{
+										<a class="btn btn-primary bg-gradient mt-1" asp-action="Edit" asp-route-id="@item.Id">編集</a>
+										<a class="btn btn-primary bg-gradient mt-1" asp-action="Delete" asp-route-id="@item.Id">削除</a>
+									}
+									else
+									{
+										<a class="btn btn-primary bg-gradient mt-1 disabled" asp-action="Edit" asp-route-id="@item.Id">編集</a>
+										<a class="btn btn-primary bg-gradient mt-1 disabled" asp-action="Delete" asp-route-id="@item.Id">削除</a>
+									}
+
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.一般名称)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.モデル名)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.メーカー)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.設置保存場所)
+								</td>
+
+								@*							<td class="text-nowrap">
+
+							<div class="d-md-inline-block">
+							<a class="btn btn-primary bg-gradient mt-1" asp-action="Details" asp-route-id="@item.Id">詳　細</a>
+							</div>
+
+							@if (User.Identity.Name == "管理ユーザー")
+							{
+							<div class="d-md-inline-block">
+							<a class="btn btn-primary bg-gradient mt-1" asp-action="Edit" asp-route-id="@item.Id">編　集</a>
+							</div>
+							<div class="d-md-inline-block">
+							<a class="btn btn-primary bg-gradient mt-1" asp-action="Delete" asp-route-id="@item.Id">削　除</a>
+							</div>
+							}
+							else
+							{
+							<div class="d-md-inline-block">
+							<a class="btn btn-primary bg-gradient mt-1 disabled" asp-action="Edit" asp-route-id="@item.Id">編　集</a>
+							</div>
+							<div class="d-md-inline-block">
+							<a class="btn btn-primary bg-gradient mt-1 disabled" asp-action="Delete" asp-route-id="@item.Id">削　除</a>
+							</div>
+							}
+							</td>*@
+
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+
+			@*		<table class="table table-bordered border-dark table-hover">
+			<thead>
+			<tr class="text-nowrap">
+			<th>
+			@Html.DisplayNameFor(model => model.管理番号)
+			</th>
+			<th>
+			@Html.DisplayNameFor(model => model.一般名称)
+			</th>
+			<th>
+			@Html.DisplayNameFor(model => model.モデル名)
+			</th>
+			<th>
+			@Html.DisplayNameFor(model => model.メーカー)
+			</th>
+			<th>
+			@Html.DisplayNameFor(model => model.設置保存場所)
+			</th>
+			<th></th>
+			</tr>
+			</thead>
+			<tbody>
+			@foreach (var item in Model)
+			{
+			<tr>
+			<td>
+			@Html.DisplayFor(modelItem => item.管理番号)
+			</td>
+			<td>
+			@Html.DisplayFor(modelItem => item.一般名称)
+			</td>
+			<td>
+			@Html.DisplayFor(modelItem => item.モデル名)
+			</td>
+			<td>
+			@Html.DisplayFor(modelItem => item.メーカー)
+			</td>
+			<td>
+			@Html.DisplayFor(modelItem => item.設置保存場所)
+			</td>
+
+			<td class="text-nowrap">
+
+			<div class="d-md-inline-block">
+			<a class="btn btn-primary bg-gradient mt-1" asp-action="Details" asp-route-id="@item.Id">詳　細</a>
+			</div>
+
+			@if (User.Identity.Name == "管理ユーザー")
+			{
+			<div class="d-md-inline-block">
+			<a class="btn btn-primary bg-gradient mt-1" asp-action="Edit" asp-route-id="@item.Id">編　集</a>
+			</div>
+			<div class="d-md-inline-block">
+			<a class="btn btn-primary bg-gradient mt-1" asp-action="Delete" asp-route-id="@item.Id">削　除</a>
+			</div>
+			}
+			else
+			{
+			<div class="d-md-inline-block">
+			<a class="btn btn-primary bg-gradient mt-1 disabled" asp-action="Edit" asp-route-id="@item.Id">編　集</a>
+			</div>
+			<div class="d-md-inline-block">
+			<a class="btn btn-primary bg-gradient mt-1 disabled" asp-action="Delete" asp-route-id="@item.Id">削　除</a>
+			</div>
+			}
+			</td>
+
+			</tr>
+			}
+			</tbody>
+			</table>*@
+
+
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,115 @@
+﻿@model WebApplication1.Models.TestTable33
+
+<div class="card card-body bg-light border-dark mb-1">
+	<div class="row">
+		<div class="col-md-4">
+			<a class="d-grid btn btn-primary bg-gradient" asp-action="Index">キャンセル</a>
+		</div>
+	</div>
+</div>
+
+<div class="card card-body bg-light border-dark mb-1">
+	<div class="row">
+		<div class="col-md-12">
+			<img class="img-fluid" src=@Url.Content("/TestTable33/CreateImage/" + ViewData["number"])>
+		</div>
+	</div>
+</div>
+
+<div class="card card-body bg-light border-dark mb-1">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<label asp-for="管理番号" class="control-label"></label>
+				<input asp-for="管理番号" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="関連番号" class="control-label"></label>
+				<input asp-for="関連番号" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="導入年月" class="control-label"></label>
+				<input asp-for="導入年月" class="form-control ymd" />
+			</div>
+			<div class="form-group">
+				<label asp-for="担当者１" class="control-label"></label>
+				<input asp-for="担当者１" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="担当者２" class="control-label"></label>
+				<input asp-for="担当者２" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="一般名称" class="control-label"></label>
+				<input asp-for="一般名称" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="モデル名" class="control-label"></label>
+				<input asp-for="モデル名" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="メーカー" class="control-label"></label>
+				<input asp-for="メーカー" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="設置保存場所" class="control-label"></label>
+				<input asp-for="設置保存場所" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="所有形態" class="control-label"></label>
+				<input asp-for="所有形態" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="Idユーザー名" class="control-label"></label>
+				<input asp-for="Idユーザー名" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="メール" class="control-label"></label>
+				<input asp-for="メール" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label asp-for="パスワード１" class="control-label">パスワード１(管理ユーザーのみ)</label>
+				<input asp-for="パスワード１" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label asp-for="パスワード２" class="control-label">パスワード２(管理ユーザーのみ)</label>
+				<input asp-for="パスワード２" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label asp-for="パスワード３" class="control-label">パスワード３(管理ユーザーのみ)</label>
+				<input asp-for="パスワード３" class="form-control" />
+			</div>
+
+		</div>
+
+		<div class="col-md-4">
+
+			<div class="form-group">
+				<label class="control-label">写真</label>
+				<div>
+					@{
+						if ((bool)ViewData["exists"])
+						{
+							<img src="@Url.Content("~/image/" + Model.Id + ".png")" class=img-fluid>
+						}
+						else
+						{
+							<img src="@Url.Content("~/image/nophoto.png")" class=img-fluid>
+						}
+					}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="備考" class="control-label"></label>
+				<textarea rows="20" asp-for="備考" class="form-control">@Model.備考</textarea>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+

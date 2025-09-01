@@ -1,0 +1,30 @@
+﻿@model ApplicationUser
+
+<div class="row">
+	<div class="col-md-4 mx-auto mt-4">
+		<form asp-controller="Account" asp-action="Login">
+			IT機器管理システム
+			<div class="card card-body bg-light p-4 border-dark">
+				<div class="form-group">
+					ユーザー名
+					<select class="form-select" name="UserName">
+						<option value="管理ユーザー">管理ユーザー</option>
+						<option value="閲覧ユーザー">閲覧ユーザー</option>
+					</select>
+				</div>
+				<div class="form-group">
+					パスワード
+					<input name="password" type="password" class="form-control" />
+					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
+				<div class="row">
+					<div class="col-md-6"></div>
+					<div class="col-md-6">
+						<input name="submit" value="ログイン" type="submit" class="form-control btn btn-primary bg-gradient mt-1" />
+					</div>
+				</div>
+				<input type="hidden" name="returnUrl" value="@Model" />
+			</div>
+		</form>
+	</div>
+</div>

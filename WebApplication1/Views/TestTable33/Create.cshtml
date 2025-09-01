@@ -1,0 +1,162 @@
+﻿@model WebApplication1.Models.TestTable33
+@inject WebApplication1.Models.SelectItems selectItems
+
+<div class="card card-body bg-light border-dark mb-1">
+	<div class="row">
+		<div class="col-md-4">
+			<a class="d-grid btn btn-primary bg-gradient" asp-action="Index">キャンセル</a>
+		</div>
+	</div>
+</div>
+
+<form enctype="multipart/form-data" asp-action="Create">
+	<div class="card card-body bg-light border-dark">
+		<div class="row">
+			<div class="col-md-4">
+
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+				<div class="form-group d-none">
+					<label asp-for="Id" class="control-label"></label>
+					<input asp-for="Id" class="form-control" />
+					<span asp-validation-for="Id" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="管理番号" class="control-label"></label>
+					<input asp-for="管理番号" class="form-control" />
+					<span asp-validation-for="管理番号" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="関連番号" class="control-label"></label>
+					<input asp-for="関連番号" class="form-control" />
+					<span asp-validation-for="関連番号" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="導入年月" class="control-label"></label>
+					<input asp-for="導入年月" class="form-control ymd" />
+					<span asp-validation-for="導入年月" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="担当者１" class="control-label"></label>
+					<input asp-for="担当者１" class="form-control" />
+					<span asp-validation-for="担当者１" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="担当者２" class="control-label"></label>
+					<input asp-for="担当者２" class="form-control" />
+					<span asp-validation-for="担当者２" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="一般名称" class="control-label"></label>
+					<input asp-for="一般名称" class="form-control" />
+					<span asp-validation-for="一般名称" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="モデル名" class="control-label"></label>
+					<input asp-for="モデル名" class="form-control" />
+					<span asp-validation-for="モデル名" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="メーカー" class="control-label"></label>
+					<input asp-for="メーカー" class="form-control" />
+					<span asp-validation-for="メーカー" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="設置保存場所" class="control-label"></label>
+					<input asp-for="設置保存場所" class="form-control" />
+					<span asp-validation-for="設置保存場所" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="所有形態" class="control-label"></label>
+					<select asp-for="所有形態" asp-items="selectItems.AcquiredType" class="form-control"></select>
+					<span asp-validation-for="所有形態" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Idユーザー名" class="control-label"></label>
+					<input asp-for="Idユーザー名" class="form-control" />
+					<span asp-validation-for="Idユーザー名" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="メール" class="control-label"></label>
+					<input asp-for="メール" class="form-control" />
+					<span asp-validation-for="メール" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="パスワード１" class="control-label">パスワード１(管理ユーザーのみ)</label>
+					<input asp-for="パスワード１" class="form-control" />
+					<span asp-validation-for="パスワード１" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="パスワード２" class="control-label">パスワード２(管理ユーザーのみ)</label>
+					<input asp-for="パスワード２" class="form-control" />
+					<span asp-validation-for="パスワード２" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="パスワード３" class="control-label">パスワード３(管理ユーザーのみ)</label>
+					<input asp-for="パスワード３" class="form-control" />
+					<span asp-validation-for="パスワード３" class="text-danger"></span>
+				</div>
+
+			</div>
+
+			<div class="col-md-4">
+
+				@*写真*@
+				<div class="form-group">
+					<label class="control-label">写真</label>
+					<input type="file" name="furniture" class="form-control" accept=".png,.jpg"/>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="備考" class="control-label"></label>
+					<textarea rows="20" asp-for="備考" class="form-control">
+						@Model.備考
+					</textarea>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6"></div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="submit" value="登　録" class="form-control btn btn-primary bg-gradient mt-1" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+	<script type="text/javascript">
+
+		window.addEventListener('load', function () {
+			let elements = document.querySelectorAll('.ymd');
+			for (let i = 0; i < elements.length; i++) {
+				elements[i].addEventListener('blur', function () {
+					let ymd = new Date(elements[i].value);
+					if (Number.isNaN(ymd.getTime())) {
+						elements[i].value = "";
+						return;
+					}
+					let y = ymd.getFullYear();
+					if (y === 2001) y = new Date().getFullYear();
+					let m = ("00" + (ymd.getMonth() + 1)).slice(-2);
+					let d = ("00" + ymd.getDate()).slice(-2);
+					elements[i].value = y + "/" + m + "/" + d;
+				});
+			}
+		});
+
+	</script>
+
+}
